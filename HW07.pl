@@ -1,6 +1,6 @@
 /* *********** HW09 ***********
-Student name: i.e. Tony Bennett  - put names here
-Student ID: i.e. mst3k  - put IDs here
+Student name: Varun Varma
+Student ID: kgy6hy
 Sources: - any websites, books, etc. other than course slides
 
 For each exercise below, create a Prolog program that will perform the
@@ -49,6 +49,13 @@ element of the list X. The predicate should fail if X has fewer than
 three elements. (Hint: this can be expressed as a fact.)
 */
 
+third([_, _, Y | _], Y).
+
+/*
+third([1, 2, 3, 4], 3).
+not(third([1, 2, 3, 4], 4)).
+not(third([1, 2, 3, 4], 4)).
+*/
 
 /* Exercise 2 ------------------------------------------------
 
@@ -58,6 +65,7 @@ X is a list of at least two elements, with the first element the same
 as the second element. (Hint: this can be expressed as a fact.)
 */
 
+firstPair([X, X | _]).
 
 /* Exercise 3 ------------------------------------------------
 
@@ -68,6 +76,7 @@ deleted. The predicate should fail if X has fewer than three
 elements. (Hint: this can be expressed as a fact.)
 */
 
+del3([X, Y, _ | Z], [X, Y | Z]).
 
 /* Exercise 4 ------------------------------------------------
 
@@ -81,6 +90,8 @@ dupList(X, [l,1,3,3,2,2]) as well as on queries like
 dupList([1,3,2],Y).
 */
 
+dupList([], []).
+dupList([H | T], X) :- X = [H, H | DT], dupList(T, DT).
 
 /* Exercise 5 ------------------------------------------------
 
@@ -154,6 +165,5 @@ prefix([5,2,1],[5,2,1]), write('--- 81 ---'),
 prefix([5,2,1],[5,2,1,1,2,3,4]), write('--- DONE ---'),!.
 
 */
-
 
 
