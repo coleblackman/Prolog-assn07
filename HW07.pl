@@ -112,7 +112,8 @@ Define a predicate, oddSize, so that oddSize(X) says that X is
 a list whose length is an odd number. (Hint: You do not need
 to compute the actual length, or do any integer arithmetic.)
 */
-
+not oddSize([]).
+oddSize([x | y]) :- not oddSize(y).
 
 /* Exercise 7 ------------------------------------------------
 
@@ -121,7 +122,8 @@ Define a predicate, evenSize, so that evenSize(X) says that X
 is a list whose length is an even number. (Hint: You do not
 need to compute the actual length, or do any integer arithmetic.)
 */
-
+evenSize([]).
+evenSize([x | y]) :- not evenSize(y).
 
 /* Exercise 8 ------------------------------------------------
 
