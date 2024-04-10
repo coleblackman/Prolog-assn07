@@ -91,7 +91,7 @@ dupList([1,3,2],Y).
 */
 
 dupList([], []).
-dupList([H | T], X) :- X = [H, H | DT], dupList(T, DT).
+dupList([H | T], [H, H | DT]) :- dupList(T, DT).
 
 /* Exercise 5 ------------------------------------------------
 
@@ -104,8 +104,7 @@ are equal, and so on to the end of the list. It should fail for
 all odd-length lists.
 */
 isDuped([]).
-not isDuped([_]).
-isDuped([X]) :- X = [H | T], T = [H, T2], isDuped(T2).
+isDuped([X, X | T]) :- isDuped(T).
 
 /* Exercise 6 ------------------------------------------------
 
@@ -114,8 +113,8 @@ Define a predicate, oddSize, so that oddSize(X) says that X is
 a list whose length is an odd number. (Hint: You do not need
 to compute the actual length, or do any integer arithmetic.)
 */
-oddSize([]) :- not =(1,2).
-oddSize([x | y]) :- not(oddSize(y)).
+oddSize([_]).
+oddSize([_ | Y]) :- not(oddSize(Y)).
 
 /* Exercise 7 ------------------------------------------------
 
@@ -124,8 +123,8 @@ Define a predicate, evenSize, so that evenSize(X) says that X
 is a list whose length is an even number. (Hint: You do not
 need to compute the actual length, or do any integer arithmetic.)
 */
-evenSize([]).
-evenSize([x | y]) :- not(evenSize([y])).
+
+evenSize(X) :- not(oddSize(X)).
 
 /* Exercise 8 ------------------------------------------------
 
@@ -139,11 +138,9 @@ prefix(X,[l,2,3]), it should find all the prefixes of the
 list [1,2,3].
 */
 prefix([],_).
-prefix([x | y1], [x | y2]) :- prefix(y1,y2).
+prefix([H | T1], [H | T2]) :- prefix(T1,T2).
 
 
-
-/* --- Some testing that may be helpful to you ---------------- 
 
 test(all):-
     
@@ -170,6 +167,5 @@ evenSize([9,7,5,4,1,2,3,7]), write('--- 72 ---'),
 prefix([5,2,1],[5,2,1]), write('--- 81 ---'),
 prefix([5,2,1],[5,2,1,1,2,3,4]), write('--- DONE ---'),!.
 
-*/
 
 
