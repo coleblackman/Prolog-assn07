@@ -103,7 +103,9 @@ and second elements are equal, and the third and fourth elements
 are equal, and so on to the end of the list. It should fail for
 all odd-length lists.
 */
-
+isDuped([]).
+not isDuped([_]).
+isDuped([X]) :- X = [H | T], T = [H, T2], isDuped(T2).
 
 /* Exercise 6 ------------------------------------------------
 
@@ -112,8 +114,8 @@ Define a predicate, oddSize, so that oddSize(X) says that X is
 a list whose length is an odd number. (Hint: You do not need
 to compute the actual length, or do any integer arithmetic.)
 */
-not oddSize([]).
-oddSize([x | y]) :- not oddSize(y).
+oddSize([]) :- not =(1,2).
+oddSize([x | y]) :- not(oddSize(y)).
 
 /* Exercise 7 ------------------------------------------------
 
@@ -123,7 +125,7 @@ is a list whose length is an even number. (Hint: You do not
 need to compute the actual length, or do any integer arithmetic.)
 */
 evenSize([]).
-evenSize([x | y]) :- not evenSize(y).
+evenSize([x | y]) :- not(evenSize([y])).
 
 /* Exercise 8 ------------------------------------------------
 
@@ -136,6 +138,8 @@ predicate works when X is uninstantiated: given a query like
 prefix(X,[l,2,3]), it should find all the prefixes of the
 list [1,2,3].
 */
+prefix([],_).
+prefix([x | y1], [x | y2]) :- prefix(y1,y2).
 
 
 
